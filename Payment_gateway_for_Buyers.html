@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Document</title>
+</head>
+<body>
+         <!-- Create a payment form -->
+<form id="payment-form">
+         <label for="card-number">Card Number:</label>
+         <input type="text" id="card-number" placeholder="Card Number" />
+         <br />
+         <label for="exp-month">Expiration Month:</label>
+         <input type="text" id="exp-month" placeholder="Expiration Month" />
+         <br />
+         <label for="exp-year">Expiration Year:</label>
+         <input type="text" id="exp-year" placeholder="Expiration Year" />
+         <br />
+         <label for="cvc">CVC:</label>
+         <input type="text" id="cvc" placeholder="CVC" />
+         <br />
+         <button type="submit">Make Payment</button>
+       </form>
+       
+       <!-- Display error message -->
+       <div id="error-message"></div>
+</body>
+<script>// Create a Stripe payment form
+         const paymentForm = document.getElementById('payment-form');
+         
+         paymentForm.addEventListener('submit', async (event) => {
+           event.preventDefault();
+         
+           // Create a Stripe token
+           const token = await stripe.createToken({
+             card: {
+               number: document.getElementById('card-number').value,
+               exp_month: document.getElementById('exp-month').value,
+               exp_year: document.getElementById('exp-year').value,
+               cvc: document.getElementById('cvc').value,
+             },
+           });
+         
+           // Send the token to your server to process the payment
+           const response = await fetch('/process-payment', {
+             method: 'POST',
+             headers: {
+               'Content-Type': 'application/json',
+             },
+             body: JSON.stringify({ token: token.id }),
+           });
+         
+           // Handle the payment response
+           const paymentResponse = await response.json();
+           if (paymentResponse.success) {
+             // Payment successful, redirect to order confirmation page
+             window.location.href = '/order-confirmation';
+           } else {
+             // Payment failed, display error message
+             document.getElementById('error-message').innerHTML = paymentResponse.error.message;
+           }
+         });</script>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyers Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Contract Farming Marketplace</h1>
+        <nav>
+            <ul>
+                <li><a href="Landing_page.html">Home</a></li>
+                <li><a href="farmer.html">Farmers</a></li>
+                <li><a href="Buyer_login_page.html">Buyers</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="Setting_panel.html">Settings</a></li>
+                
+                
+            </ul>
+        </nav>
+    </header>
+    <section id="buyers">
+        <h2>For Buyers</h2>
+        <form id="buyerForm" method="post" action="/submit-buyer-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required aria-required="true">
+    
+            <label for="interest">Interested In:</label>
+            <select id="interest" name="interest" required aria-required="true">
+                <option value="" disabled selected>Select an option</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Maize">Maize</option>
+                <option value="Rice">Rice</option>
+                <option value="Vegetables">Vegetables</option>
+                <!-- Add more options as needed -->
+            </select>
+    
+            <label for="budget">Budget:</label>
+            <input type="number" id="budget" name="budget" required aria-required="true">
+            <button id="requestLocation">Allow Location Access</button> <br>
+            <button type="submit" id = "Submit09"><a href="Details_Wheat.html">go go</a></button>
+            <div id="location-container">
+            
+               
+                <p id="status"></p>
+                <p id="coordinates"></p>
+            </div>
+        </form>
+    </section>
+</body>
+<script>
+         document.addEventListener("DOMContentLoaded", function() {
+             const interestSelect = document.getElementById("interest");
+             const budgetInput = document.getElementById("budget");
+ 
+             const budgetOptions = {
+                 "Wheat": 350,
+                 "Maize": 500,
+                 "Rice": 70,
+                 "Vegetables": 100,
+               
+             };
+ 
+             interestSelect.addEventListener("change", function() {
+                 const selectedInterest = interestSelect.value;
+                 budgetInput.value = budgetOptions[selectedInterest] || '';
+             });
+         });
+         document.getElementById('requestLocation').addEventListener('click', function() {
+            // Check if Geolocation API is supported
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        document.getElementById('status').textContent = "Location retrieved successfully!";
+                        document.getElementById('coordinates').textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+                    },
+                    function(error) {
+                        switch (error.code) {
+                            case error.PERMISSION_DENIED:
+                                document.getElementById('status').textContent = "User denied the request for Geolocation.";
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                document.getElementById('status').textContent = "Location information is unavailable.";
+                                break;
+                            case error.TIMEOUT:
+                                document.getElementById('status').textContent = "The request to get user location timed out.";
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                document.getElementById('status').textContent = "An unknown error occurred.";
+                                break;
+                        }
+                    }
+                );
+            } else {
+                document.getElementById('status').textContent = "Geolocation is not supported by this browser.";
+            }
+        });
+     </script>
+</html>

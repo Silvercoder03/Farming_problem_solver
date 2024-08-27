@@ -1,0 +1,41 @@
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" contect="width=device=width, initial-scale=1.0">
+   <title> Farmer's Login Page</title>
+   <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+   <div class="login-container">
+      <div class="login-form">
+         <h2> Signup Page</h2>
+
+         <form>
+            <label for="email"> Email </label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="email">Phone number</label>
+            <input type="email" id="email" placeholder="Enter your phone number" required>
+            <label for="Password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <label for="Password">Confirm Password</label>
+            <input type="password" id="password" placeholder="Confirm your password" required>
+            <button type="submit">Sign up</button>
+            <button class="google-signin"><img src="google.png" alt="Google icon"> Sign In with Google</button>
+         </form>
+         <div>
+            <button onclick="openLogin()">
+               <p class="signup-text">Already have an account?
+                  <a href="Buyer_login_page.html">Login</a>
+               </p>
+            </button>
+         </div>
+
+      </div>
+   </div>
+   <script src="login.js"></script>
+</body>
+
+</html>

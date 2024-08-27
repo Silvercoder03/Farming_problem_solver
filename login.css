@@ -1,0 +1,86 @@
+body{
+	font-family: 'Arial, sans-serif';
+	background-color:rgb(105, 241, 105);
+	margin: 0;
+	padding: 0;
+}
+
+.login-container{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+.login-form{ 
+	backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+	padding: 40px;
+	width: 400px;
+	box-shadow: 0 5px 15px black;
+    border: 1px solid rgb(70, 69, 69);
+	/* border-radius:8px; */
+
+}
+.login-from h2{
+	font-family: 'serif';
+	margin-bottom: 10px;
+}
+.login-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background: transparent;
+    border: 1px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px solid gray;
+    color: white;
+}
+.forget{
+	justify-content: space-between;
+	align-items:center;
+	margin-bottom:20px;
+	margin-left:250px;
+}
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.google-signin img{
+    width: 20px;
+    margin-right: 10px;
+}
+
+
+.signup-text {
+    text-align: center;
+}
+.signup-text a {
+    color: #2f00ff;
+    text-decoration: none;
+}
+
+
+button a{
+    color: white;
+    text-decoration: none;
+}
+button{
+    box-shadow: 5px 5px 5px gray;
+}
+
+
+	

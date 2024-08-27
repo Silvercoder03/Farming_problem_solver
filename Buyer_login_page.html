@@ -1,0 +1,39 @@
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" contect="width=device=width, initial-scale=1.0">
+   <title> Buyer's Login Page</title>
+   <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+   <div class="login-container">
+      <div class="login-form">
+         <h2> Login as a Buyer</h2>
+
+         <form>
+            <label for="email"> Email </label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <label for="Password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <div class="forget">
+               <a href="Forget_page.html">Forgot Password</a>
+            </div>
+            <a href="Buyers.html"><button type="submit">Sign In</button></a>
+            <button class="google-signin"><img src="google.png" alt="Google icon" > <a href="Buyers.html">Google Login</a></button>
+         </form>
+         <div>
+            <button onclick="openLogin()">
+               <p class="signup-text">Don't have an account?
+                  <a href="Signup_page.html">Sign up</a>
+               </p>
+            </button>
+         </div>
+
+      </div>
+   </div>
+   <script src="login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Document</title>
+         <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+         <section id="farmers">
+                  <h2>For Farmers</h2>
+                  <form id="farmerForm">
+                      <label for="name">Name:</label>
+                      <input type="text" id="name" name="name" required>
+          
+                      <label for="crop">Crops Types:</label>
+            <select id="crop" name="crop" required aria-required="true">
+                <option value="" disabled selected>Select an option</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Maize">Maize</option>
+                <option value="Rice">Rice</option>
+                <option value="Vegetables">Vegetables</option>
+                <!-- Add more options as needed -->
+            </select>
+          
+                      <label for="quantity">Quantity:</label>
+                      <input type="number" id="quantity" name="quantity" required>
+                      
+                      <label for="quantity">Set Price:</label>
+                      <input type="number" id="quantity" name="quantity" required>
+                      <button id="requestLocation">Allow Location Access</button> <br>
+                      <button type="submit">Submit</button>
+                      <div id="location-container">
+            
+               
+                        <p id="status"></p>
+                        <p id="coordinates"></p>
+                    </div>
+                  </form>
+              </section>
+              <script>  document.getElementById('requestLocation').addEventListener('click', function() {
+                // Check if Geolocation API is supported
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(
+                        function(position) {
+                            const latitude = position.coords.latitude;
+                            const longitude = position.coords.longitude;
+                            document.getElementById('status').textContent = "Location retrieved successfully!";
+                            document.getElementById('coordinates').textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+                        },
+                        function(error) {
+                            switch (error.code) {
+                                case error.PERMISSION_DENIED:
+                                    document.getElementById('status').textContent = "User denied the request for Geolocation.";
+                                    break;
+                                case error.POSITION_UNAVAILABLE:
+                                    document.getElementById('status').textContent = "Location information is unavailable.";
+                                    break;
+                                case error.TIMEOUT:
+                                    document.getElementById('status').textContent = "The request to get user location timed out.";
+                                    break;
+                                case error.UNKNOWN_ERROR:
+                                    document.getElementById('status').textContent = "An unknown error occurred.";
+                                    break;
+                            }
+                        }
+                    );
+                } else {
+                    document.getElementById('status').textContent = "Geolocation is not supported by this browser.";
+                }
+            });</script>
+</body>
+</html>
